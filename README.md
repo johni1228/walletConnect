@@ -12,5 +12,3 @@ $ yarn dev
 $ yarn build
 $ yarn start
 ```
-
-👀 [View the Live Test](https://arche-nft.vercel.app/)
