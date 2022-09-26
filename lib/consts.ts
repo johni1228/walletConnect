@@ -1,7 +1,5 @@
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import WalletLink from 'walletlink';
-import { BigNumber } from 'ethers';
-
 
 export const providerOptions = {
   walletconnect: {
@@ -34,8 +32,5 @@ export const providerOptions = {
   },
 };
 
-// export const NFT_CONTRACT_ADDRESS = '0xd8a984a2d4887721dedf0ffb59fd8432fa60243b'; // ETH mainnet
-export const NFT_CONTRACT_ADDRESS = '0x0E6377E923CCEC60b778F59A6F99F0C0d6fA0459'; // BSC Testnet
-export const MINT_COST = BigNumber.from('80000000000000000'); // 0.08 ether
-export const MAX_PER_WALLET = 2000;
+export const maxCounter = 1 * 60 * 1000;
 
