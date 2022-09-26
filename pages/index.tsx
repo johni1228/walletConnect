@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import { ethers } from 'ethers';
+import React, { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head';
 import NavBar from '../components/NavBar';
 import CountdownTimer from '../components/CountdownTimer';
-import { maxCounter } from '../lib/consts';
+import useGlobalState from '../hooks/useGlobalState';
+import { maxCounter, passNFT_address } from '../lib/consts';
+import abi from '../abi/passNFT.json';
 
-export const Home = (): JSX.Element => {
+export const Home = () => {
 
   const [countDown, setCountDown] = useState(maxCounter);
+  const { provider, web3Provider, chainId } = useGlobalState();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,14 +20,28 @@ export const Home = (): JSX.Element => {
     return () => clearInterval(interval);
   })
 
-  const handleMint = () => {
-    console.log('clicked mint button');
-  }
+  const handleMint = useCallback(async () => {
+    const signer = web3Provider.getSigner();
+    const address = await signer.getAddress();
+    const contract = new ethers.Contract(passNFT_address, abi, signer);
+
+    if (chainId != 4) {
+      alert("Please switch Ethereum Network");
+      return;
+    }
+    else {
+      const tx = await contract.mint(address, {
+        value: 0
+      });
+      await tx.wait();
+    };
+
+  }, [provider, web3Provider, chainId]);
 
 
 
   return (
-    <div className="">
+    <div>
       <Head>
         <title>WalletConnect</title>
       </Head>

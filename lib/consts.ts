@@ -32,5 +32,7 @@ export const providerOptions = {
   },
 };
 
+
+export const passNFT_address = '0xa3DDAf083e491ecd5CbdCbd7DcC504cA7c0f2408';
 export const maxCounter = 1 * 60 * 1000;
 
