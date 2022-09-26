@@ -1,4 +1,4 @@
-# Archie Neko Official Website
+# Wallet Connection with web3Modal
 
 ## Getting started
 
